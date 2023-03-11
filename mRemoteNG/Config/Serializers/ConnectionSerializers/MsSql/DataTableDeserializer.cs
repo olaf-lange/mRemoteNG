@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.Versioning;
 using System.Security;
-using Connection;
 using mRemoteNG.App;
 using mRemoteNG.Connection;
 using mRemoteNG.Connection.Protocol;
@@ -18,6 +18,7 @@ using mRemoteNG.Tree.Root;
 
 namespace mRemoteNG.Config.Serializers.ConnectionSerializers.MsSql
 {
+    [SupportedOSPlatform("windows")]
     public class DataTableDeserializer : IDeserializer<DataTable, ConnectionTreeModel>
     {
         private readonly ICryptographyProvider _cryptographyProvider;

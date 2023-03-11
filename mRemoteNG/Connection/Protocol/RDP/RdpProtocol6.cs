@@ -15,12 +15,13 @@ using mRemoteNG.UI.Forms;
 using mRemoteNG.UI.Tabs;
 using MSTSCLib;
 using mRemoteNG.Resources.Language;
-using Connection;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.DirectoryServices.ActiveDirectory;
+using System.Runtime.Versioning;
 
 namespace mRemoteNG.Connection.Protocol.RDP
 {
+    [SupportedOSPlatform("windows")]
     public class RdpProtocol6 : ProtocolBase, ISupportsViewOnly
     {
         /* RDP v8 requires Windows 7 with:

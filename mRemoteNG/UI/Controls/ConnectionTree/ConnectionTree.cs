@@ -16,11 +16,13 @@ using mRemoteNG.Tree;
 using mRemoteNG.Tree.ClickHandlers;
 using mRemoteNG.Tree.Root;
 using mRemoteNG.Resources.Language;
+using System.Runtime.Versioning;
 
 // ReSharper disable ArrangeAccessorOwnerBody
 
 namespace mRemoteNG.UI.Controls.ConnectionTree
 {
+    [SupportedOSPlatform("windows")]
     public partial class ConnectionTree : TreeListView, IConnectionTree
     {
         private readonly ConnectionTreeDragAndDropHandler _dragAndDropHandler = new ConnectionTreeDragAndDropHandler();
@@ -265,7 +267,7 @@ namespace mRemoteNG.UI.Controls.ConnectionTree
             return (RootNodeInfo)ConnectionTreeModel.RootNodes.First(item => item is RootNodeInfo);
         }
 
-        public void Invoke(Action action)
+        public new void Invoke(Action action)
         {
             Invoke((Delegate)action);
         }

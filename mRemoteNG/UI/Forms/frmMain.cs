@@ -32,12 +32,14 @@ using mRemoteNG.UI.Panels;
 using WeifenLuo.WinFormsUI.Docking;
 using mRemoteNG.UI.Controls;
 using mRemoteNG.Resources.Language;
+using System.Runtime.Versioning;
 #endregion
 
 // ReSharper disable MemberCanBePrivate.Global
 
 namespace mRemoteNG.UI.Forms
 {
+    [SupportedOSPlatform("windows")]
     public partial class FrmMain
     {
         public static FrmMain Default { get; } = new FrmMain();
@@ -834,12 +836,12 @@ namespace mRemoteNG.UI.Forms
 
         private void tsModeUser_Click(object sender, EventArgs e)
         {
-            Properties.rbac.Default.ActiveRole = "UserRole";
+            Properties.OptionsRbac.Default.ActiveRole = "UserRole";
         }
 
         private void tsModeAdmin_Click(object sender, EventArgs e)
         {
-            Properties.rbac.Default.ActiveRole = "AdminRole";
+            Properties.OptionsRbac.Default.ActiveRole = "AdminRole";
         }
     }
 }

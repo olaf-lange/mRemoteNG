@@ -10,9 +10,11 @@ using mRemoteNG.Tools;
 using mRemoteNG.Tree;
 using mRemoteNG.Tree.Root;
 using mRemoteNG.Resources.Language;
+using System.Runtime.Versioning;
 
 namespace mRemoteNG.Config.Serializers.MiscSerializers
 {
+    [SupportedOSPlatform("windows")]
     public class ActiveDirectoryDeserializer
     {
         private readonly string _ldapPath;
@@ -80,8 +82,7 @@ namespace mRemoteNG.Config.Serializers.MiscSerializers
             }
             catch (Exception ex)
             {
-                Runtime.MessageCollector.AddExceptionMessage("Config.Import.ActiveDirectory.ImportComputers() failed.",
-                                                             ex);
+                Runtime.MessageCollector.AddExceptionMessage("Config.Import.ActiveDirectory.ImportComputers() failed.", ex);
             }
         }
 

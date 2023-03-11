@@ -12,12 +12,12 @@ namespace mRemoteNG.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.1.0.0")]
-    internal sealed partial class rbac : global::System.Configuration.ApplicationSettingsBase {
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.5.0.0")]
+    internal sealed partial class OptionsRbac : global::System.Configuration.ApplicationSettingsBase {
         
-        private static rbac defaultInstance = ((rbac)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new rbac())));
+        private static OptionsRbac defaultInstance = ((OptionsRbac)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new OptionsRbac())));
         
-        public static rbac Default {
+        public static OptionsRbac Default {
             get {
                 return defaultInstance;
             }

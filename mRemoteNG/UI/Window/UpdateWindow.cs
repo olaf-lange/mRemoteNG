@@ -10,9 +10,11 @@ using mRemoteNG.Themes;
 using WeifenLuo.WinFormsUI.Docking;
 using mRemoteNG.Resources.Language;
 using System.Threading.Tasks;
+using System.Runtime.Versioning;
 
 namespace mRemoteNG.UI.Window
 {
+    [SupportedOSPlatform("windows")]
     public partial class UpdateWindow : BaseWindow
     {
         private AppUpdater _appUpdate;
@@ -182,7 +184,7 @@ namespace mRemoteNG.UI.Window
                 Runtime.MessageCollector?.AddExceptionStackTrace(Language.UpdateCheckCompleteFailed, ex);
             }
         }
-        
+
         private void SetVisibilityOfUpdateControls(bool visible)
         {
             lblChangeLogLabel.Visible = visible;

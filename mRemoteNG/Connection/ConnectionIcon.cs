@@ -1,11 +1,13 @@
-using System;
+﻿using System;
 using System.ComponentModel;
+using System.Runtime.Versioning;
 using mRemoteNG.App;
 using mRemoteNG.App.Info;
 
 
 namespace mRemoteNG.Connection
 {
+    [SupportedOSPlatform("windows")]
     public class ConnectionIcon : StringConverter
     {
         public static string[] Icons = { };
@@ -39,9 +41,7 @@ namespace mRemoteNG.Connection
             }
             catch (Exception ex)
             {
-                Runtime.MessageCollector.AddMessage(Messages.MessageClass.ErrorMsg,
-                                                    $"Couldn\'t get Icon from String" + Environment.NewLine +
-                                                    ex.Message);
+                Runtime.MessageCollector.AddMessage(Messages.MessageClass.ErrorMsg, $"Couldn\'t get Icon from String" + Environment.NewLine + ex.Message);
             }
 
             return null;

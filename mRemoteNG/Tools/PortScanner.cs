@@ -1,9 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 using System.Threading;
 using mRemoteNG.App;
 using mRemoteNG.Messages;
@@ -11,6 +13,7 @@ using mRemoteNG.Messages;
 
 namespace mRemoteNG.Tools
 {
+    [SupportedOSPlatform("windows")]
     public class PortScanner
     {
         private readonly List<IPAddress> _ipAddresses = new List<IPAddress>();
@@ -67,7 +70,10 @@ namespace mRemoteNG.Tools
         public void StartScan()
         {
             _scanThread = new Thread(ScanAsync);
-            _scanThread.SetApartmentState(ApartmentState.STA);
+
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                _scanThread.SetApartmentState(ApartmentState.STA);
+
             _scanThread.IsBackground = true;
             _scanThread.Start();
         }
@@ -79,7 +85,8 @@ namespace mRemoteNG.Tools
                 p.SendAsyncCancel();
             }
 
-            _scanThread.Abort();
+            // Obsolete: https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/5.0/thread-abort-obsolete
+            //_scanThread.Abort();
         }
 
         public static bool IsPortOpen(string hostname, string port)
@@ -108,9 +115,7 @@ namespace mRemoteNG.Tools
             try
             {
                 _hostCount = 0;
-                Runtime.MessageCollector.AddMessage(MessageClass.InformationMsg,
-                                                    $"Tools.PortScan: Starting scan of {_ipAddresses.Count} hosts...",
-                                                    true);
+                Runtime.MessageCollector.AddMessage(MessageClass.InformationMsg, $"Tools.PortScan: Starting scan of {_ipAddresses.Count} hosts...", true);
                 foreach (var ipAddress in _ipAddresses)
                 {
                     RaiseBeginHostScanEvent(ipAddress);
@@ -125,17 +130,13 @@ namespace mRemoteNG.Tools
                     }
                     catch (Exception ex)
                     {
-                        Runtime.MessageCollector.AddMessage(MessageClass.WarningMsg,
-                                                            $"Tools.PortScan: Ping failed for {ipAddress} {Environment.NewLine} {ex.Message}",
-                                                            true);
+                        Runtime.MessageCollector.AddMessage(MessageClass.WarningMsg, $"Tools.PortScan: Ping failed for {ipAddress} {Environment.NewLine} {ex.Message}", true);
                     }
                 }
             }
             catch (Exception ex)
             {
-                Runtime.MessageCollector.AddMessage(MessageClass.WarningMsg,
-                                                    $"StartScanBG failed (Tools.PortScan) {Environment.NewLine} {ex.Message}",
-                                                    true);
+                Runtime.MessageCollector.AddMessage(MessageClass.WarningMsg, $"StartScanBG failed (Tools.PortScan) {Environment.NewLine} {ex.Message}", true);
             }
         }
 

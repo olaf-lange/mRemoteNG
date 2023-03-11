@@ -14,9 +14,11 @@ using MySql.Data.Types;
 using mRemoteNG.Resources.Language;
 using static System.String;
 using System.Windows;
+using System.Runtime.Versioning;
 
 namespace mRemoteNG.Tools
 {
+    [SupportedOSPlatform("windows")]
     public static class MiscTools
     {
         public static Icon GetIconFromFile(string FileName)
@@ -44,7 +46,7 @@ namespace mRemoteNG.Tools
 
         public static Optional<SecureString> PasswordDialog(string passwordName = null, bool verify = true)
         {
-            var splash = FrmSplashScreenNew.GetInstance();
+            //var splash = FrmSplashScreenNew.GetInstance();
             //TODO: something not right there 
             //if (PresentationSource.FromVisual(splash))
             //    splash.Close();

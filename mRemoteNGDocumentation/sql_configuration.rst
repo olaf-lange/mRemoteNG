@@ -19,7 +19,6 @@ The list below includes databases that are officially supported. Others may alre
 Steps to configure your SQL Server
 ==================================
 - Create a new Database called "mRemoteNG" on your SQL Server.
-- Run the SQL Script for your DB type listed below in topic (SQL Table creation Scripts) on the newly created Database.
 - Give the users that you want to grant access to the mRemoteNG Connections Database Read/Write permissions on the Database.
 
 Steps to configure mRemoteNG for SQL
@@ -32,19 +31,3 @@ Steps to configure mRemoteNG for SQL
 - Click OK to apply the changes. The main window title should now change to "mRemoteNG | SQL Server".
 - Now click on File - Save to update the tables on your SQL Server with the data from the loaded connections xml file. (Do not click File - New, this doesn't work yet)
 - You should now be able to do everything you were able to do with the XML storage plus see the changes live on another mRemoteNG instance that is connected to the same Database.
-
-SQL Table creation Scripts
-==========================
-
-MSSQL
------
-
-.. include:: mssql_db_setup.sql
-   :code: sql
-
-    
-MYSQL
------
-
-.. include:: mysql_db_setup.sql
-   :code: sql
